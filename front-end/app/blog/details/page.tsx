@@ -49,12 +49,19 @@ const BlogDetails: FC = () => {
     return (
         <div className="flex flex-wrap p-3" key={blog?.id.toString()}>
             <div className="w-full  px-2 rounded shadow bg-white">
-                <h1 className="font-bold text-xl mb-2 text-red-800">{blog?.title}</h1>
-                <p className="font-normal mb-2 text-gray-500">{blog?.summary}</p>
-                <b className="font-bold  mb-2 text-gray-950">{blog?.author}</b>
+                <span className="flex justify-between mx-3">
+                    <span className="flex justify-between flex-col">
+                        <h1 className="font-bold text-xl mb-2 text-red-800">{blog?.title}</h1>
+                        <p className="font-thin mb-2 text-gray-950">{publishedDate}</p>
+                    </span>
+
+
+                    <b className="font-bold  mb-2 text-gray-950">{blog?.author}</b>
+                </span>
+
+                <p className="font-normal mx-3 mb-2 text-gray-500">{blog?.summary}</p>
                 <hr />
-                <p className="font-normal mb-2 text-gray-500">{blog?.body}</p>
-                <b className="font-bold mb-2 text-gray-950">{publishedDate}</b>
+                <p className="font-normal mx-3 mb-2 text-gray-500">{blog?.body}</p>
             </div>
         </div>
     );
