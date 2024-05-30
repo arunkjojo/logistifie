@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { blogType } from "../../../interface";
 import { localDate } from "@/utils/localDate";
 
-const BlogDetails = ({ params }) => {
+const BlogDetails = ({ params }: any) => {
     const [blog, setBlog] = useState<blogType | null>(null);
     const [publishedDate, setPublishedDate] = useState<string>('');
 
