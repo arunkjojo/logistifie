@@ -1,24 +1,34 @@
 const express = require("express");
 const fs = require("fs");
+const cors = require("cors");
 const { blogData } = require("./DUMMY");
 
 const app = express();
 const port = 5000;
 
-app.use(express.json());
+const allowedOrigins = [
+  "http://localhost:5000",
+  "https://logistifie-ivory.vercel.app",
+  "http://logistifie-ivory.vercel.app",
+];
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", [
-    "http://localhost:3000",
-    "https://logistifie-ivory.vercel.app",
-    "http://logistifie-ivory.vercel.app",
-  ]); // Update to match the domain you will make the request from
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
+
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "https://logistifie-ivory.vercel.app"); // Update to match the domain you will make the request from
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
 
 app.get("/api/blog", (req, res) => {
   fs.readFile(__dirname + "/DUMMY.json", "utf8", (err, data) => {
