@@ -16,7 +16,7 @@ const BlogDetails = ({ params }: any) => {
     useEffect(() => {
         const fetchApi = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/blog/${params.id}`);
+                const response = await fetch(`https://logistifie-apis.vercel.app/api/blog/${params.id}`); //http://localhost:5000/api/blog/${params.id}
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }

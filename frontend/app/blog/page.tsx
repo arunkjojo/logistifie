@@ -8,7 +8,7 @@ const Blog: FC = () => {
     const [blogs, setBlogs] = useState<blogType[]>([]);
     const fetchApi = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/blog`);
+            const response = await fetch(`https://logistifie-apis.vercel.app/api/blog`); //http://localhost:5000/api/blog
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
