@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React, { FC, useEffect, useState } from "react";
 import { blogType } from '../../interface/index';
+import { localDate } from "@/utils/localDate";
 
 const Blog: FC = () => {
     const [blogs, setBlogs] = useState<blogType[]>([]);
@@ -31,7 +32,10 @@ const Blog: FC = () => {
                         <div className="w-full  px-2 rounded shadow bg-white">
 
                             <Link href={`/blog/${blog.id}`}>
-                                <span className="font-bold text-xl mb-2 text-red-800">{blog.title}</span>
+                                <div className="flex flex-row justify-between">
+                                    <span className="font-bold text-xl text-red-800">{blog.title}</span>
+                                    <span className="font-normal text-gray-700">{localDate(blog.publicationDate)}</span>
+                                </div>
                                 <div className="text-gray-700 text-base">{blog.summary}</div>
                             </Link>
                         </div>

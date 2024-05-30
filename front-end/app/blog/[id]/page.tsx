@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from "react";
 import { blogType } from "../../../interface";
+import { localDate } from "@/utils/localDate";
 
 const BlogDetails = ({ params }) => {
     const [blog, setBlog] = useState<blogType | null>(null);
@@ -8,17 +9,8 @@ const BlogDetails = ({ params }) => {
 
     useEffect(() => {
         if (blog?.publicationDate) {
-            let dataPub = blog?.publicationDate;
-            const utcDate = new Date(dataPub);
-            const localDate = utcDate.toLocaleString('en-US', {
-                day: '2-digit',      // Use two digits for the day
-                month: 'long',       // Use the full name of the month
-                year: 'numeric',     // Use the full year
-                hour: '2-digit',     // Use two digits for the hour
-                minute: '2-digit',   // Use two digits for the minute
-                hour12: true         // Use 12-hour format
-            });
-            setPublishedDate(localDate);
+            var dataPub: string = blog?.publicationDate;
+            setPublishedDate(localDate(dataPub));
         }
     }, [blog?.publicationDate]);
     useEffect(() => {
