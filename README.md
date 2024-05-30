@@ -1,11 +1,11 @@
 # Logistifie Assignment
 
 # FrontEnd 
-- https://logistifie-ivory.vercel.app (Blog posts are fetched via Express.js API)
+- https://logistifie-ivory.vercel.app (Next.js with typescript and tailwind CSS)
 # Backend 
-- https://logistifie-apis.vercel.app/api/blogs 
+- https://logistifie-apis.vercel.app/api/blogs (Blog posts are fetched via Express.js API)
 # Github
-- https://github.com/arunkjojo/logistifie.git
+- https://github.com/arunkjojo/logistifie.git (Both front-end and back-end)
 
 ## Assignment 1
 
