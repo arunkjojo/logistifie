@@ -1,7 +1,7 @@
 'use client'
 import Link from "next/link";
 import React, { FC, useEffect, useState } from "react";
-import { blogType } from './../../../interface/index';
+import { blogType } from '../../interface/index';
 
 const Blog: FC = () => {
     const [blogs, setBlogs] = useState<blogType[]>([]);
@@ -30,7 +30,7 @@ const Blog: FC = () => {
                     <div className="flex flex-wrap p-3" key={blog.id.toString()}>
                         <div className="w-full  px-2 rounded shadow bg-white">
 
-                            <Link href={`/blog/details?id=${blog.id}`}>
+                            <Link href={`/blog/${blog.id}`}>
                                 <span className="font-bold text-xl mb-2 text-red-800">{blog.title}</span>
                                 <div className="text-gray-700 text-base">{blog.summary}</div>
                             </Link>

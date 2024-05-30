@@ -1,12 +1,8 @@
 'use client'
-import { useSearchParams } from "next/navigation";
-import { FC, useEffect, useState } from "react";
-import { blogType } from "../../../../interface";
+import { useEffect, useState } from "react";
+import { blogType } from "../../../interface";
 
-const BlogDetails: FC = () => {
-    const searchParams = useSearchParams();
-    const id = searchParams.get('id');
-    // return <h3>Id is {id}</h3>;
+const BlogDetails = ({ params }) => {
     const [blog, setBlog] = useState<blogType | null>(null);
     const [publishedDate, setPublishedDate] = useState<string>('');
 
@@ -28,7 +24,7 @@ const BlogDetails: FC = () => {
     useEffect(() => {
         const fetchApi = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/blog/${id}`);
+                const response = await fetch(`http://localhost:5000/api/blog/${params.id}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -39,11 +35,11 @@ const BlogDetails: FC = () => {
                 setBlog(null)
             }
         };
-        if (id) {
+        if (params.id) {
             fetchApi()
         }
         return setBlog(null)
-    }, [id]);
+    }, [params.id]);
 
     if (blog === null) return <h1>This item can not access</h1>
     return (
@@ -66,4 +62,5 @@ const BlogDetails: FC = () => {
         </div>
     );
 };
+
 export default BlogDetails;
