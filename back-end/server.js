@@ -1,4 +1,5 @@
 const express = require("express");
+const fs = require("fs");
 const { blogData } = require("./DUMMY");
 
 const app = express();
@@ -19,17 +20,41 @@ app.use((req, res, next) => {
 });
 
 app.get("/api/blog", (req, res) => {
-  res.json(blogData);
+  fs.readFile(__dirname + "/DUMMY.json", "utf8", (err, data) => {
+    if (err) {
+      res.status(500).send("Error reading file");
+      return;
+    }
+
+    const jsonData = JSON.parse(data);
+    const blogData = jsonData.blogData;
+
+    if (blogData) {
+      res.json(blogData);
+    } else {
+      res.status(404).send("Blogs are not found");
+    }
+  });
 });
 
 app.get("/api/blog/:id", (req, res) => {
-  const id = req.params.id;
-  const blogPost = blogData.find((post) => post.id === parseInt(id));
-  if (blogPost) {
-    res.json(blogPost);
-  } else {
-    res.status(404).json({ message: "Blog post not found" });
-  }
+  const requestedId = parseInt(req.params.id);
+
+  fs.readFile(__dirname + "/DUMMY.json", "utf8", (err, data) => {
+    if (err) {
+      res.status(500).send("Error reading file");
+      return;
+    }
+
+    const jsonData = JSON.parse(data);
+    const blogData = jsonData.blogData.find((u) => u.id === requestedId);
+
+    if (blogData) {
+      res.json(blogData);
+    } else {
+      res.status(404).send("This blog not found");
+    }
+  });
 });
 
 app.listen(port, () => console.log(`Server listening on port ${port}!`));
