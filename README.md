@@ -3,7 +3,7 @@
 # FrontEnd 
 - https://logistifie-ivory.vercel.app (Next.js with typescript and tailwind CSS)
 # Backend 
-- https://logistifie-apis.vercel.app/api/blogs (Blog posts are fetched via Express.js API)
+- https://logistifie-apis.vercel.app/api/blogs (Express.js API, Router, Dummy.json, errorHandler)
 # Github
 - https://github.com/arunkjojo/logistifie.git (Both front-end and back-end)
 
