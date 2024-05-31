@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 import logo from "/public/images/logo.png";
-import language from "/public/images/Language.png"
+import language from "/public/images/language.png"
 import whatsapp from "/public/images/whatsapp.png"
 
 type TextButtonProps = {
